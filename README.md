@@ -1,28 +1,39 @@
-# Create T3 App
+# K-Pop Draft Game
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+K-Pop Draft Game is a party-style drafting experience for up to six players. Each player recruits a roster of eight K-pop idols, then faces a series of playful scenarios where those idols need to take on specific roles. After selections are made, the table votes on whose lineup thrives (and whose idol choices flop) in every situation.
 
-## What's next? How do I make an app with this?
+## Development
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+This project runs on Next.js 15 with the App Router, Tailwind CSS, shadcn/ui components, and tRPC for server-client communication. State is managed in-memory for now, with plans to layer in persistence as the game evolves.
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+To get started locally:
 
-- [Next.js](https://nextjs.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+```bash
+npm install
+npm run dev --turbo
+```
 
-## Learn More
+You can launch the optional Postgres instance via `./start-database.sh` if you want to experiment with persistence later on.
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+## Gameplay Overview
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+1. **Form the Lobby** – One player creates a lobby and shares the generated six-character code. The lobby fills out as friends join.
+2. **Draft the Idols** – When everyone is ready, the host starts the draft. The game assigns a random snake order and each player chooses eight idols from the shared pool.
+3. **Face the Scenarios** – After drafting, the game introduces random scenarios. Players pick which idols from their rosters should handle each role.
+4. **Vote and Survive** – Everyone votes on the most convincing matchups. Track bragging rights, award points, or just laugh at the chaotic outcomes.
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+This repository currently focuses on the welcome screen, lobby flow, and draft mechanics described in the initial implementation spec. Future specs will flesh out the scenario system, persistence, richer voting, and UI polish.
 
-## How do I deploy this?
+## Scripts
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+Key commands you might use during development:
+
+- `npm run dev --turbo` – Start the Next.js dev server
+- `npm run build` / `npm run preview` – Build and preview production output
+- `npm run lint` / `npm run lint:fix` – Run ESLint (set `SKIP_ENV_VALIDATION=1` locally if you haven’t configured database credentials)
+- `npm run format:write` – Apply Prettier formatting
+- `npm run typecheck` – Run TypeScript without emitting files
+
+## Contributing
+
+Requirements, flows, and component structure come from the spec files under `specs/001-initial-page-setup`. Feel free to open issues or contribute enhancements as the game expands beyond the initial lobby and draft experience. 💿✨

@@ -1,0 +1,50 @@
+[
+  {
+    "id": "idol-001",
+    "name": "Kim Hana",
+    "group": "Aurora",
+    "imageUrl": "/images/idols/kim-hana.jpg"
+  },
+  {
+    "id": "idol-002",
+    "name": "Lee Minseo",
+    "group": "Starlite",
+    "imageUrl": "/images/idols/lee-minseo.jpg"
+  },
+  {
+    "id": "idol-003",
+    "name": "Park Yuna",
+    "group": "Velvet Echo",
+    "imageUrl": "/images/idols/park-yuna.jpg"
+  },
+  {
+    "id": "idol-004",
+    "name": "Choi Jisoo",
+    "group": "Skyline",
+    "imageUrl": "/images/idols/choi-jisoo.jpg"
+  },
+  {
+    "id": "idol-005",
+    "name": "Seo Nari",
+    "group": "Moonbeam",
+    "imageUrl": "/images/idols/seo-nari.jpg"
+  },
+  {
+    "id": "idol-006",
+    "name": "Im Jaeyun",
+    "group": "Pulse9",
+    "imageUrl": "/images/idols/im-jaeyun.jpg"
+  },
+  {
+    "id": "idol-007",
+    "name": "Han Sohee",
+    "group": "Neon Tide",
+    "imageUrl": "/images/idols/han-sohee.jpg"
+  },
+  {
+    "id": "idol-008",
+    "name": "Kang Mirae",
+    "group": "Radiant",
+    "imageUrl": "/images/idols/kang-mirae.jpg"
+  }
+]

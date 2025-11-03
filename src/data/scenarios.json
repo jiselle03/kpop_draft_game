@@ -1,0 +1,448 @@
+[
+  {
+    "id": "scenario-001",
+    "title": "Midnight Heist Mission",
+    "prompt": "Your idol crew has been tapped for a high-fashion heist at a luxury mall after hours. Assign roles so the team gets in, steals the outfits, and escapes unseen.",
+    "roles": [
+      {
+        "id": "lookout",
+        "label": "Skyline Lookout",
+        "description": "Keeps watch from the rooftop penthouse, relaying guard rotations."
+      },
+      {
+        "id": "decoy",
+        "label": "Mall Decoy",
+        "description": "Distracts the night staff with an impromptu dance cover to buy time."
+      },
+      {
+        "id": "hacker",
+        "label": "Wardrobe Hacker",
+        "description": "Silently disables the smart locks on the designer closet."
+      }
+    ]
+  },
+  {
+    "id": "scenario-002",
+    "title": "Surprise Comeback Stage",
+    "prompt": "You've been given one day's notice to mount a surprise comeback showcase. Pick idols who can deliver chaos-free execution.",
+    "roles": [
+      {
+        "id": "stage-director",
+        "label": "Stage Director",
+        "description": "Calls the shots, keeps transitions tight, and herds everyone on cue."
+      },
+      {
+        "id": "viral-dancer",
+        "label": "Viral Point Choreographer",
+        "description": "Crafts the eight-count social media will obsess over."
+      },
+      {
+        "id": "vocals-fixer",
+        "label": "Live Vocals Fixer",
+        "description": "Stays unshaken even when the in-ears descend into chaos."
+      }
+    ]
+  },
+  {
+    "id": "scenario-003",
+    "title": "Haunted Variety Special",
+    "prompt": "You're filming a haunted house episode with a live audience and hidden cameras. Make sure the scares land without any real ghosts taking over.",
+    "roles": [
+      {
+        "id": "ghost-whisperer",
+        "label": "Ghost Whisperer",
+        "description": "Keeps the cast calm by negotiating with mischievous spirits."
+      },
+      {
+        "id": "scream-generator",
+        "label": "Scream Generator",
+        "description": "Delivers the best reaction shots for the highlight reel."
+      },
+      {
+        "id": "tech-handler",
+        "label": "Tech Handler",
+        "description": "Manages all the special effects without blowing the fuse box."
+      }
+    ]
+  },
+  {
+    "id": "scenario-004",
+    "title": "Deserted Island Retreat",
+    "prompt": "The group is stranded on a remote island filming a survival vlog. Choose idols who will keep morale high and everyone fed.",
+    "roles": [
+      {
+        "id": "fire-keeper",
+        "label": "Fire Keeper",
+        "description": "Starts the nightly campfire faster than the edit can cut away."
+      },
+      {
+        "id": "forager",
+        "label": "Fearless Forager",
+        "description": "Finds edible fruit without triggering a survival crisis."
+      },
+      {
+        "id": "morale-captain",
+        "label": "Morale Captain",
+        "description": "Keeps spirits high with games, playlists, and pep talks."
+      }
+    ]
+  },
+  {
+    "id": "scenario-005",
+    "title": "Galactic MV Shoot",
+    "prompt": "The director wants a zero-gravity concept music video. Assign idols who can nail their marks while floating through space.",
+    "roles": [
+      {
+        "id": "gravity-anchor",
+        "label": "Gravity Anchor",
+        "description": "Keeps the choreography grounded even in harnesses."
+      },
+      {
+        "id": "stunt-double",
+        "label": "Zero-G Stunt Lead",
+        "description": "Performs flips and spins without losing lunch."
+      },
+      {
+        "id": "fx-navigator",
+        "label": "FX Navigator",
+        "description": "Collaborates with VFX artists to make every frame sparkle."
+      }
+    ]
+  },
+  {
+    "id": "scenario-006",
+    "title": "Chaotic Cooking Showdown",
+    "prompt": "A live broadcast cooking battle just started. You're out of recipes and in desperate need of improv geniuses.",
+    "roles": [
+      {
+        "id": "head-chef",
+        "label": "Head Chef",
+        "description": "Actually knows how to make the dish edible."
+      },
+      {
+        "id": "plate-designer",
+        "label": "Presentation Pro",
+        "description": "Makes the plate look worthy of a Michelin meme."
+      },
+      {
+        "id": "commentator",
+        "label": "Chaos Commentator",
+        "description": "Narrates the madness without revealing the disasters."
+      }
+    ]
+  },
+  {
+    "id": "scenario-007",
+    "title": "Mystery Escape Room",
+    "prompt": "The group is locked in a puzzle-dense escape room sponsored by a mystery drama. Assign the team that breaks out the fastest.",
+    "roles": [
+      {
+        "id": "puzzle-master",
+        "label": "Puzzle Master",
+        "description": "Solves riddles and cipher locks like it's a fan letter."
+      },
+      {
+        "id": "clue-scout",
+        "label": "Clue Scout",
+        "description": "Finds hidden levers without knocking over the props."
+      },
+      {
+        "id": "time-keeper",
+        "label": "Time Keeper",
+        "description": "Tracks the countdown and steers the group away from panic."
+      }
+    ]
+  },
+  {
+    "id": "scenario-008",
+    "title": "Dream Dorm Makeover",
+    "prompt": "A reality crew arrives to transform the dorm in 48 hours. Match idols to design, DIY, and reveal duties.",
+    "roles": [
+      {
+        "id": "vision-producer",
+        "label": "Vision Producer",
+        "description": "Builds the mood board and negotiates with the stylist."
+      },
+      {
+        "id": "craft-captain",
+        "label": "Craft Captain",
+        "description": "Fearlessly handles hot glue, paint, and mid-renovation disasters."
+      },
+      {
+        "id": "reveal-host",
+        "label": "Reveal Host",
+        "description": "Delivers the before-and-after to camera with drama."
+      }
+    ]
+  },
+  {
+    "id": "scenario-009",
+    "title": "Space Tourism Launch",
+    "prompt": "Your idols are the face of the first fan cruise to the stratosphere. Assign the team that keeps passengers delighted and safe.",
+    "roles": [
+      {
+        "id": "flight-concierge",
+        "label": "Flight Concierge",
+        "description": "Greets every fan with first-class composure."
+      },
+      {
+        "id": "gravity-coach",
+        "label": "Gravity Coach",
+        "description": "Teaches zero-g poses without losing grip on reality."
+      },
+      {
+        "id": "playlist-pilot",
+        "label": "Playlist Pilot",
+        "description": "Curates the sonic journey from lift-off to landing."
+      }
+    ]
+  },
+  {
+    "id": "scenario-010",
+    "title": "Red Carpet Chaos Control",
+    "prompt": "A luxury brand's red carpet is threatened by a sudden downpour. Figure out who saves the couture and the cameras.",
+    "roles": [
+      {
+        "id": "fashion-medic",
+        "label": "Fashion Medic",
+        "description": "Fixes wardrobe malfunctions with couture-level speed."
+      },
+      {
+        "id": "press-liaison",
+        "label": "Press Liaison",
+        "description": "Keeps reporters calm and still gets the best angles."
+      },
+      {
+        "id": "logistics-guru",
+        "label": "Logistics Guru",
+        "description": "Wrangles umbrellas, carpets, and queue chaos."
+      }
+    ]
+  },
+  {
+    "id": "scenario-011",
+    "title": "Time-Travel Fan Meet",
+    "prompt": "A themed fan meet lets attendees visit different eras of the group's career. Assign roles to sell the illusion.",
+    "roles": [
+      {
+        "id": "era-archivist",
+        "label": "Era Archivist",
+        "description": "Keeps the timeline accurate and the lore airtight."
+      },
+      {
+        "id": "fashion-historian",
+        "label": "Fashion Historian",
+        "description": "Recreates iconic outfits with modern comfort hacks."
+      },
+      {
+        "id": "meet-host",
+        "label": "Fan Meet Host",
+        "description": "Guides fans through the eras without breaking immersion."
+      }
+    ]
+  },
+  {
+    "id": "scenario-012",
+    "title": "Snowed-In Chalet Special",
+    "prompt": "A blizzard locked everyone inside the filming lodge. Pick idols who can turn the cabin fever into legendary content.",
+    "roles": [
+      {
+        "id": "hot-chocolate-chief",
+        "label": "Hot Chocolate Chief",
+        "description": "Keeps mugs full and fingers warm at all times."
+      },
+      {
+        "id": "game-master",
+        "label": "Game Master",
+        "description": "Invents indoor challenges that rival the main show."
+      },
+      {
+        "id": "cozy-cameraperson",
+        "label": "Cozy Cameraperson",
+        "description": "Captures the cabin aesthetic before the snow melts."
+      }
+    ]
+  },
+  {
+    "id": "scenario-013",
+    "title": "Summer Water Battle",
+    "prompt": "An outdoor variety special escalated into a water fight war zone. Choose who dominates the splash battlefield.",
+    "roles": [
+      {
+        "id": "strategist",
+        "label": "Battle Strategist",
+        "description": "Draws up the perfect plan using water balloons and sprinklers."
+      },
+      {
+        "id": "sniper",
+        "label": "Water Sniper",
+        "description": "Has deadly aim with a super soaker."
+      },
+      {
+        "id": "shield-hero",
+        "label": "Shield Hero",
+        "description": "Protects teammates with inflatables and tactical towels."
+      }
+    ]
+  },
+  {
+    "id": "scenario-014",
+    "title": "Retro Arcade Takeover",
+    "prompt": "A new single is launching inside a pop-up arcade. Match idols to the machines they will champion all night.",
+    "roles": [
+      {
+        "id": "rhythm-ace",
+        "label": "Rhythm Ace",
+        "description": "Crushes rhythm games with flawless combos.",
+        "allowDuplicateIdols": true
+      },
+      {
+        "id": "ticket-mogul",
+        "label": "Ticket Mogul",
+        "description": "Racks up prize tickets and keeps the fans cheering."
+      },
+      {
+        "id": "arcade-mc",
+        "label": "Arcade MC",
+        "description": "Keeps the energy high between coins and confetti."
+      }
+    ]
+  },
+  {
+    "id": "scenario-015",
+    "title": "Secret Agent Audition",
+    "prompt": "A spy-action drama is scouting idols for cameo roles. Assign who aces the screen test.",
+    "roles": [
+      {
+        "id": "fight-choreo",
+        "label": "Fight Choreography Lead",
+        "description": "Memorizes stunts and executes them safely."
+      },
+      {
+        "id": "polyglot",
+        "label": "Undercover Polyglot",
+        "description": "Delivers lines flawlessly in three languages."
+      },
+      {
+        "id": "prop-genius",
+        "label": "Prop Genius",
+        "description": "Turns questionable gadgets into convincing spy tech."
+      }
+    ]
+  },
+  {
+    "id": "scenario-016",
+    "title": "Celebrity Pet-Sitting",
+    "prompt": "A roster of celebrity pets just arrived for a charity livestream. Assign idols who can keep the chaos adorable.",
+    "roles": [
+      {
+        "id": "pet-whisperer",
+        "label": "Pet Whisperer",
+        "description": "Calms even the most diva-esque animal guest."
+      },
+      {
+        "id": "treat-master",
+        "label": "Treat Master",
+        "description": "Manages snacks and dietary needs with zero mix-ups."
+      },
+      {
+        "id": "highlight-editor",
+        "label": "Highlight Editor",
+        "description": "Clips the cutest moments for instant replay."
+      }
+    ]
+  },
+  {
+    "id": "scenario-017",
+    "title": "Moonlight Drive-In Concert",
+    "prompt": "A pop-up drive-in stage only has power for one shot. Choose idols who make the single take unforgettable.",
+    "roles": [
+      {
+        "id": "light-painter",
+        "label": "Light Painter",
+        "description": "Turns headlights and drones into a light show."
+      },
+      {
+        "id": "crowd-conductor",
+        "label": "Crowd Conductor",
+        "description": "Hypes fans in their cars without breaking noise rules."
+      },
+      {
+        "id": "one-take-vocal",
+        "label": "One-Take Vocal",
+        "description": "Delivers the centerpiece vocal line under pressure."
+      }
+    ]
+  },
+  {
+    "id": "scenario-018",
+    "title": "Citywide Treasure Hunt",
+    "prompt": "A sponsor scattered clues across the city. Assemble a squad that will solve it fastest on camera.",
+    "roles": [
+      {
+        "id": "navigator",
+        "label": "Navigator",
+        "description": "Keeps the team on route and on time."
+      },
+      {
+        "id": "cipher-cracker",
+        "label": "Cipher Cracker",
+        "description": "Decodes riddles hidden in storefronts and billboards."
+      },
+      {
+        "id": "hype-reporter",
+        "label": "Hype Reporter",
+        "description": "Documents each clue for the fans following at home."
+      }
+    ]
+  },
+  {
+    "id": "scenario-019",
+    "title": "Legendary Collaboration Camp",
+    "prompt": "Producers locked several groups together for a songwriting retreat. Choose who bridges styles without ego clashes.",
+    "roles": [
+      {
+        "id": "beat-alchemist",
+        "label": "Beat Alchemist",
+        "description": "Mixes everyone's motifs into one track."
+      },
+      {
+        "id": "bridge-captain",
+        "label": "Bridge Captain",
+        "description": "Writes the climactic bridge that brings the house down."
+      },
+      {
+        "id": "vibe-curator",
+        "label": "Vibe Curator",
+        "description": "Sets the studio mood and keeps egos in check."
+      }
+    ]
+  },
+  {
+    "id": "scenario-020",
+    "title": "Royal Court Intrigue",
+    "prompt": "A period drama invited your team to improvise a royal scandal scene. Assign who plays each courtly role.",
+    "roles": [
+      {
+        "id": "queen",
+        "label": "Secretive Queen",
+        "description": "Commands presence and hides motives flawlessly."
+      },
+      {
+        "id": "spymaster",
+        "label": "Palace Spymaster",
+        "description": "Works the shadows and tracks every rumor."
+      },
+      {
+        "id": "jester",
+        "label": "Court Jester",
+        "description": "Balances humor with razor sharp commentary."
+      },
+      {
+        "id": "scribe",
+        "label": "Royal Scribe",
+        "description": "Narrates the scandal for the history books."
+      }
+    ]
+  }
+]

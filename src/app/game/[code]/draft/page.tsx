@@ -23,7 +23,7 @@ import {
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { toast } from 'sonner'
-import { getCardsAction, submitPickAction } from '@/server/game/actions'
+import { submitPickAction } from '@/server/game/actions'
 import { PICKS_PER_PLAYER } from '@/server/game/types'
 
 import type { Game, IdolCard } from '@/server/game/types'
@@ -34,29 +34,84 @@ export default function DraftPage({ params }: { params: Promise<{ code: string }
   const router = useRouter()
   const searchParams = useSearchParams()
   const { session } = useGameSession()
-  const { game, error, refresh } = useGame(code, { pollIntervalMs: 1_500 })
+  const { game, cards, error, refresh } = useGame(code)
 
-  const [cards, setCards] = React.useState<IdolCard[]>([])
   const [isSubmitting, setIsSubmitting] = React.useState(false)
+  const [isTransitioning, setIsTransitioning] = React.useState(false)
+  const [transitionHeadline, setTransitionHeadline] = React.useState<string | null>(null)
+  const [transitionMessage, setTransitionMessage] = React.useState<string | null>(null)
+  const transitionTimeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(null)
 
-  React.useEffect(() => {
-    void (async () => {
-      const result = await getCardsAction()
-      if (Array.isArray(result)) {
-        setCards(result)
-      }
-    })()
+  const clearTransitionTimer = React.useCallback(() => {
+    if (transitionTimeoutRef.current) {
+      clearTimeout(transitionTimeoutRef.current)
+      transitionTimeoutRef.current = null
+    }
   }, [])
+
+  const resetTransition = React.useCallback(() => {
+    clearTransitionTimer()
+    setIsTransitioning(false)
+    setTransitionHeadline(null)
+    setTransitionMessage(null)
+  }, [clearTransitionTimer])
+
+  const startTransition = React.useCallback(
+    (target: string, headline: string, message: string) => {
+      setIsTransitioning(true)
+      setTransitionHeadline(headline)
+      setTransitionMessage(message)
+      if (transitionTimeoutRef.current) {
+        return
+      }
+      transitionTimeoutRef.current = setTimeout(() => {
+        transitionTimeoutRef.current = null
+        router.replace(target)
+      }, 1_800)
+    },
+    [router],
+  )
 
   React.useEffect(() => {
     if (!game) {
+      resetTransition()
+      return
+    }
+
+    if (game.status === 'scenario' || game.status === 'reveal') {
+      startTransition(
+        `/game/${code}/room`,
+        'Game starting',
+        'Hang tight while we lead everyone into the scenario room.',
+      )
+      return
+    }
+
+    if (game.status === 'complete') {
+      startTransition(
+        `/game/${code}/room?view=complete`,
+        'Draft complete',
+        'Wrapping up the board before showing the final rosters.',
+      )
       return
     }
 
     if (game.status === 'lobby') {
       router.replace(`/game/${code}/lobby`)
+      resetTransition()
+      return
     }
-  }, [game, router, code])
+
+    if (game.status === 'drafting') {
+      resetTransition()
+    }
+  }, [game, router, code, resetTransition, startTransition])
+
+  React.useEffect(() => {
+    return () => {
+      clearTransitionTimer()
+    }
+  }, [clearTransitionTimer])
 
   const cardMap = React.useMemo(() => {
     return new Map(cards.map((card) => [card.id, card]))
@@ -87,9 +142,6 @@ export default function DraftPage({ params }: { params: Promise<{ code: string }
     [game, cardMap],
   )
   const winnerId = React.useMemo(() => determineWinner(roster), [roster])
-
-  const isComplete =
-    game?.status === 'complete' || searchParams.get('view') === 'complete'
 
   const handlePick = React.useCallback(
     (cardId: string) => {
@@ -129,6 +181,44 @@ export default function DraftPage({ params }: { params: Promise<{ code: string }
     [cardMap, code, game, playerId, refresh],
   )
 
+  const hasCompletedStatus =
+    game != null && ['scenario', 'reveal', 'complete'].includes(game.status)
+  const isComplete =
+    hasCompletedStatus || searchParams.get('view') === 'complete'
+
+  if (isTransitioning) {
+    return (
+      <div className="mx-auto flex min-h-[60vh] w-full max-w-3xl flex-col items-center justify-center gap-6 px-4 py-12 text-center">
+        <div className="sr-only" aria-live="assertive">
+          {transitionHeadline ?? 'Game starting'}
+          {transitionMessage ? `. ${transitionMessage}` : ''}
+        </div>
+        <Badge
+          variant="secondary"
+          className="px-4 py-2 text-base font-semibold tracking-[0.2em]"
+        >
+          {code}
+        </Badge>
+        <Card className="w-full">
+          <CardHeader className="space-y-2 text-center">
+            <CardTitle className="text-2xl font-semibold">
+              {transitionHeadline ?? 'Game starting'}
+            </CardTitle>
+            <CardDescription>
+              {transitionMessage ?? 'Hang tight while we set the stage.'}
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="flex flex-col items-center gap-3">
+            <Loader2 className="h-6 w-6 animate-spin text-primary" aria-hidden />
+            <p className="text-muted text-sm">
+              We’ll move you automatically in just a moment.
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+    )
+  }
+
   return (
     <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 py-8 sm:py-12">
       <header className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
@@ -158,7 +248,7 @@ export default function DraftPage({ params }: { params: Promise<{ code: string }
         </Alert>
       )}
 
-      <section className="grid gap-6 lg:grid-cols-[2fr,1fr]">
+      <section className="grid gap-6 lg:grid-cols-[2fr,1fr] lg:items-start">
         <Card>
           <CardHeader>
             <div className="flex items-center justify-between">
@@ -225,50 +315,12 @@ export default function DraftPage({ params }: { params: Promise<{ code: string }
           </CardContent>
         </Card>
 
-        <aside className="space-y-4">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">Draft order</CardTitle>
-              <CardDescription>
-                Snake order repeats every round. Stay sharp when it swings back!
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <ol className="space-y-2 text-sm">
-                {game?.turnOrder.map((id, index) => {
-                  const pickNumber = index + 1
-                  const roundNumber = game.players.length
-                    ? Math.floor(index / game.players.length) + 1
-                    : 0
-                  const participant = getPlayerName(game, id)
-                  const isCurrentPick = index === game.activePickIndex
-                  return (
-                    <li
-                      key={`${id}-${index}`}
-                      className={`flex items-center justify-between rounded-md border px-3 py-2 ${isCurrentPick ? 'border-primary bg-primary/10 text-primary' : 'border-border bg-surface'}`}
-                    >
-                      <span>
-                        <strong className="mr-2 text-xs tracking-wide uppercase">
-                          {pickNumber}
-                        </strong>
-                        {participant}
-                      </span>
-                      <span className="text-muted text-xs">
-                        Round {roundNumber}
-                      </span>
-                    </li>
-                  )
-                })}
-              </ol>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">Rosters</CardTitle>
-              <CardDescription>
-                {isComplete
-                  ? 'Draft results locked — compare lineups!'
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">Rosters</CardTitle>
+            <CardDescription>
+              {isComplete
+                ? 'Draft results locked — compare lineups!'
                   : 'Picks update in real time as each idol is drafted.'}
               </CardDescription>
             </CardHeader>
@@ -303,8 +355,7 @@ export default function DraftPage({ params }: { params: Promise<{ code: string }
                 />
               )}
             </CardContent>
-          </Card>
-        </aside>
+        </Card>
       </section>
     </div>
   )

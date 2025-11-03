@@ -27,7 +27,7 @@ export default function LobbyPage({ params }: { params: Promise<{ code: string }
   const code = rawCode.toUpperCase()
   const router = useRouter()
   const { session } = useGameSession()
-  const { game, error, refresh } = useGame(code, { pollIntervalMs: 2_000 })
+  const { game, error, refresh } = useGame(code)
 
   const playerId = session?.playerId
   const player = game?.players.find((entry) => entry.id === playerId)
@@ -41,10 +41,16 @@ export default function LobbyPage({ params }: { params: Promise<{ code: string }
 
     if (game.status === 'drafting') {
       router.replace(`/game/${code}/draft`)
+      return
+    }
+
+    if (game.status === 'scenario' || game.status === 'reveal') {
+      router.replace(`/game/${code}/room`)
+      return
     }
 
     if (game.status === 'complete') {
-      router.replace(`/game/${code}/draft?view=complete`)
+      router.replace(`/game/${code}/room?view=complete`)
     }
   }, [game, router, code])
 

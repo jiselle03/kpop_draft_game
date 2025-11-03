@@ -1,7 +1,13 @@
 export const MAX_PLAYERS = 6
 export const PICKS_PER_PLAYER = 8
 
-export type GameStatus = 'lobby' | 'locked' | 'drafting' | 'complete'
+export type GameStatus =
+  | 'lobby'
+  | 'locked'
+  | 'drafting'
+  | 'scenario'
+  | 'reveal'
+  | 'complete'
 
 export interface IdolCard {
   id: string
@@ -18,6 +24,25 @@ export interface Player {
   joinedAt: number
 }
 
+export type ScenarioSubmissionStatus = 'pending' | 'submitted'
+
+export interface ScenarioRole {
+  id: string
+  label: string
+  description?: string
+  allowDuplicateIdols?: boolean
+}
+
+export interface Scenario {
+  id: string
+  title: string
+  prompt: string
+  roles: ScenarioRole[]
+  imageUrl?: string
+}
+
+export type ScenarioAssignments = Record<string, Record<string, string>>
+
 export interface Game {
   id: string
   code: string
@@ -28,6 +53,12 @@ export interface Game {
   activePickIndex: number
   picks: Record<string, string[]>
   availableCardIds: string[]
+  scenarios: Scenario[]
+  currentScenarioIndex: number
+  roleAssignments: ScenarioAssignments
+  submissionState: Record<string, ScenarioSubmissionStatus>
+  scenarioRevealedAt?: number
+  scenarioUpdatedAt?: number
   createdAt: number
   lockedAt?: number
   completedAt?: number
@@ -46,3 +77,15 @@ export interface LobbyError {
 export type GameResult<TData = void> =
   | { ok: true; data: TData }
   | { ok: false; error: LobbyError }
+
+export interface ScenarioSnapshot {
+  code: string
+  scenario: Scenario | null
+  currentScenarioIndex: number
+  totalScenarios: number
+  roleAssignments: ScenarioAssignments
+  submissionState: Record<string, ScenarioSubmissionStatus>
+  status: Extract<GameStatus, 'scenario' | 'reveal'>
+  revealedAt?: number
+  updatedAt: number
+}

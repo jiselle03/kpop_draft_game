@@ -588,7 +588,7 @@ function assignSeats(players: Player[]) {
   }))
 }
 
-function buildSnakeOrder(playerIds: string[]) {
+export function buildSnakeOrder(playerIds: string[]) {
   const rounds = PICKS_PER_PLAYER
   const order: string[] = []
 

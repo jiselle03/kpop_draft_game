@@ -108,6 +108,7 @@ export default function LobbyPage({ params }: { params: Promise<{ code: string }
           <Badge
             variant="secondary"
             className="px-4 py-2 text-base font-semibold tracking-[0.2em]"
+            data-testid="lobby-code"
           >
             {code}
           </Badge>
@@ -190,6 +191,7 @@ export default function LobbyPage({ params }: { params: Promise<{ code: string }
               size="lg"
               disabled={!game || !isCreator || game.players.length < 2}
               onClick={handleStartDraft}
+              data-testid="start-draft"
             >
               <Lock className="mr-2 h-4 w-4" aria-hidden />
               Start Draft
@@ -218,7 +220,11 @@ function LobbyPlayer({
   isCreator: boolean
 }) {
   return (
-    <li className="border-border bg-surface flex items-center justify-between rounded-lg border px-4 py-3">
+    <li
+      className="border-border bg-surface flex items-center justify-between rounded-lg border px-4 py-3"
+      data-testid="lobby-player"
+      data-player-id={player.id}
+    >
       <div>
         <p className="text-foreground text-sm font-semibold">{player.name}</p>
         <p className="text-muted text-xs">

@@ -290,6 +290,8 @@ export default function DraftPage({ params }: { params: Promise<{ code: string }
                     type="button"
                     onClick={() => handlePick(card.id)}
                     disabled={!isMyTurn || isComplete || isSubmitting}
+                    data-testid="idol-card"
+                    data-card-id={card.id}
                     className="group border-border bg-surface relative overflow-hidden rounded-lg border p-4 text-left transition-shadow hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-70"
                   >
                     <div className="space-y-2">

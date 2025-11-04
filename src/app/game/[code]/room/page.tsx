@@ -389,6 +389,8 @@ export default function GameRoomPage({
                             type="button"
                             onClick={() => handleOpenRole(role.id)}
                             disabled={isSelectionDisabled || isAssigning}
+                            data-testid="scenario-role"
+                            data-role-id={role.id}
                             className="border-border bg-surface relative flex h-full flex-col justify-between rounded-lg border p-4 text-left transition hover:shadow-lg focus-visible:ring focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-75"
                           >
                             <div className="space-y-2">
@@ -585,6 +587,8 @@ export default function GameRoomPage({
                       type="button"
                       onClick={() => void handleAssignIdol(entry.card.id)}
                       disabled={disabled || isAssigning}
+                      data-testid="scenario-roster-card"
+                      data-card-id={entry.card.id}
                       className={`border-border flex w-full flex-col items-start rounded-md border px-4 py-3 text-left transition hover:shadow focus-visible:ring ${disabled ? 'cursor-not-allowed opacity-60' : ''} ${isActive ? 'border-primary bg-primary/10' : 'bg-surface'}`}
                     >
                       <span className="text-foreground font-semibold">

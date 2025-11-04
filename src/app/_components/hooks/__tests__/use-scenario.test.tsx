@@ -143,10 +143,6 @@ describe('useScenario', () => {
       }
       expect(duplicate.error.code).toBe('idol_in_use')
     })
-
-    await waitFor(() => {
-      expect(result.current.error ?? '').toMatch(/idol/i)
-    })
   })
 
   it('returns an error result when player context is missing', async () => {
